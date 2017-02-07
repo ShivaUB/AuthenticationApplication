@@ -1,0 +1,42 @@
+﻿@model AuthenticationServer.Models.AuthenticationModels.AddPhoneModel
+
+@{
+    ViewBag.Title = "AddPhoneNumber";
+}
+<h2>@ViewBag.Title.</h2>
+
+<p>Here You can Add a Phone Number for 2-Step Verification.</p>
+<div class="row">
+    <div class="col-md-8">
+        <section id="loginForm">
+            @using (Html.BeginForm("AddPhoneNumber", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <h4>Use a Working Phone Number.</h4>
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Ph_No, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Ph_No, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Ph_No, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.LabelFor(m => m.Confirm_Ph_No, new { @class = "col-md-2 control-label" })
+                    <div class="col-md-10">
+                        @Html.TextBoxFor(m => m.Confirm_Ph_No, new { @class = "form-control" })
+                        @Html.ValidationMessageFor(m => m.Confirm_Ph_No, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Phone Number" class="btn btn-default" />
+                    </div>
+                </div>
+            }
+        </section>
+    </div>
+</div>
+
